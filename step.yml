@@ -68,19 +68,19 @@ inputs:
       description: |
         You can use the artifacts from another bitrise build of the same project.
         If you launch this step on the build where you launched Android build step eg. you don't have to set this key
-      is_expand: false
+      is_expand: true
       is_required: false
   - android_apk_path: "$BITRISE_APK_PATH"
     opts:
       title: "APK path"
       description: |
         If you use this step in the same build where you generated the APK
-      is_expand: false
+      is_expand: true
       is_required: true
   - ios_ipa_path: "$BITRISE_IPA_PATH"
     opts:
       title: "IPA path"
       description: |
         If you use this step in the same build where you generated the IPA
-      is_expand: false
+      is_expand: true
       is_required: true
