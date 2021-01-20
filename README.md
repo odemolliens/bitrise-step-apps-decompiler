@@ -4,9 +4,9 @@
 
 Decompile mobile APK and/or IPA
 
-This step will get/download your APK/IPA and decompile it to:
-- apk_decompiled
-- ipa_unzipped
+This step will get/download your APK/IPA and decompile them to:
+- apk_decompiled/
+- ipa_unzipped/
 
 <br/>
 
