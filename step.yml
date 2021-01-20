@@ -1,0 +1,86 @@
+#
+# A couple of useful guides & docs:
+#
+# - Main Bitrise CLI docs: https://github.com/bitrise-io/bitrise/tree/master/_docs
+# - Step Development Guideline: https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+# - Bitrise.yml format spec: https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md
+# - Bitrise docs: http://devcenter.bitrise.io/
+# - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
+
+title: |-
+  Mobile apps decompiler
+summary: |
+  Decompile mobile APK and/or IPA to look inside
+description: |
+  Decompile mobile APK and/or IPA to look inside
+
+  ### Troubleshooting
+
+  - Be aware, you have to launch this step after the compilation step ("Android Build" for android, "Xcode Archive" for iOS)
+  - Launch "Deploy to Bitrise.io" step after this one to deploy report files to artifacts
+
+website: https://github.com/imranMnts/bitrise-step-apps-decompiler
+source_code_url: https://github.com/imranMnts/bitrise-step-apps-decompiler
+support_url: https://github.com/imranMnts/bitrise-step-apps-decompiler/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+project_type_tags:
+  - ios
+  - android
+  - react-native
+  - flutter
+type_tags:
+  - utility
+is_requires_admin_user: false
+is_always_run: true
+is_skippable: false
+deps:
+  brew:
+  - name: jq
+  - name: apktool
+toolkit:
+  bash:
+    entry_file: step.sh
+inputs:
+  - decompile_android: "yes"
+    opts:
+      title: "Decompile Android APK"
+      summary: "Do you want decompile Android APK?"
+      is_expand: true
+      is_required: true
+      value_options:
+        - "yes"
+        - "no"
+  - decompile_ios: "yes"
+    opts:
+      title: "Decompile iOS IPA"
+      summary: "Do you want decompile iOS IPA?"
+      is_expand: true
+      is_required: true
+      value_options:
+        - "yes"
+        - "no"
+  - outside_build_slug:
+    opts:
+      title: "External Build slug"
+      summary: "Build slug of the build where you have the APK/IPA into artifacts"
+      description: |
+        You can use the artifacts from another bitrise build of the same project.
+        If you launch this step on the build where you launched Android build step eg. you don't have to set this key
+      is_expand: false
+      is_required: false
+  - android_apk_path: "$BITRISE_APK_PATH"
+    opts:
+      title: "APK path"
+      description: |
+        If you use this step in the same build where you generated the APK
+      is_expand: false
+      is_required: true
+  - ios_ipa_path: "$BITRISE_IPA_PATH"
+    opts:
+      title: "IPA path"
+      description: |
+        If you use this step in the same build where you generated the IPA
+      is_expand: false
+      is_required: true
