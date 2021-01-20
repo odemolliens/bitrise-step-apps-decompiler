@@ -39,7 +39,6 @@ deps:
   brew:
   - name: jq
   - name: apktool
-  - name: gnu-sed
 toolkit:
   bash:
     entry_file: step.sh
