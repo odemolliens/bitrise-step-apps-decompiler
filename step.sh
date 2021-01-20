@@ -79,9 +79,9 @@ if [[ ${decompile_ios} == "yes" ]]; then
     fi
 
     # decompile the ipa
-    mkdir ios_unzipped
+    mkdir ipa_unzipped
     unzip ios.ipa
-    mv Payload ios_unzipped/
+    mv Payload ipa_unzipped/
     echo "SUCCESS: iOS ipa decompiled successfully"
 fi
 
