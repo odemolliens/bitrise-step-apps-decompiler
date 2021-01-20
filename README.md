@@ -26,5 +26,4 @@ The asterisks (*) mean mandatory keys
 |----------------|-------------|--------------|--------------|
 |decompile_android* |yes/no |Setup - Set yes if you want decompile Android APK|yes|
 |decompile_ios* |yes/no |Setup - Set yes if you want decompile iOS IPA|yes|
-|ios_app_name* | String |Config - if you want check iOS app, have to set its name, can be found on xcode -> General -> Display Name||
 |outside_build_slug |String |Setup - Set the build slug if you exported as an artifact your APK/IPA in another Bitrise build, if you launch this step in the Bitrise build where you generate your APK/IPA, you don't need to setup this key but you have to launch this step after the steps which generate the APK/IPA ||

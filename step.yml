@@ -84,13 +84,3 @@ inputs:
         If you use this step in the same build where you generated the IPA
       is_expand: false
       is_required: true
-  - ios_app_name:
-    opts:
-      title: "iOS app name (Display Name)"
-      description: |
-        You have to set this key if you want check ios quality.
-        If not, you can set an empty string.
-
-        You can find it on xcode -> General -> Display Name
-      is_expand: false
-      is_required: true

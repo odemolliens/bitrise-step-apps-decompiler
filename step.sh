@@ -44,14 +44,10 @@ if [[ ${decompile_android} == "yes" ]]; then
 
     # decompile the apk
     apktool d android.apk -o apk_decompiled
+    echo "SUCCESS: Android apk decompiled successfully"
 fi
 
 if [[ ${decompile_ios} == "yes" ]]; then
-    if [[ ${ios_app_name} == "" ]]; then
-        echo "ERROR: Didn't find any ios app name ios_app_name: $ios_app_name"
-        exit 1
-    fi
-
     if [[ ${outside_build_slug} != ""  ]]; then
         # we will download the ipa from artifacts
         # dl ios artifact
@@ -86,6 +82,7 @@ if [[ ${decompile_ios} == "yes" ]]; then
     mkdir ios_unzipped
     unzip ios.ipa
     mv Payload ios_unzipped/
+    echo "SUCCESS: iOS ipa decompiled successfully"
 fi
 
 exit 0
