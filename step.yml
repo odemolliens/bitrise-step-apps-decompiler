@@ -19,9 +19,9 @@ description: |
   - Be aware, you have to launch this step after the compilation step ("Android Build" for android, "Xcode Archive" for iOS)
   - Launch "Deploy to Bitrise.io" step after this one to deploy report files to artifacts
 
-website: https://github.com/imranMnts/bitrise-step-apps-decompiler
-source_code_url: https://github.com/imranMnts/bitrise-step-apps-decompiler
-support_url: https://github.com/imranMnts/bitrise-step-apps-decompiler/issues
+website: https://github.com/odemolliens/bitrise-step-apps-decompiler
+source_code_url: https://github.com/odemolliens/bitrise-step-apps-decompiler
+support_url: https://github.com/odemolliens/bitrise-step-apps-decompiler/issues
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
