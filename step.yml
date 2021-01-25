@@ -33,7 +33,7 @@ project_type_tags:
 type_tags:
   - utility
 is_requires_admin_user: false
-is_always_run: true
+is_always_run: false
 is_skippable: false
 deps:
   brew:
@@ -74,7 +74,11 @@ inputs:
     opts:
       title: "APK path"
       description: |
-        If you use this step in the same build where you generated the APK
+        If you use this step in the same build where you generated the IPA
+        You have to set this key if you launch this step directly in the build where you generate your APK/IPA, in that case, be careful to launch it necessarily after these build steps
+            - `Android Build` for android
+            - `Xcode Archive` for iOS
+        Otherwis, you can launch this step in another Bitrise build, in that case, you don't need to setup this key but `outside_build_slug` to download your APK/IPA to do quality checks
       is_expand: true
       is_required: true
   - ios_ipa_path: "$BITRISE_IPA_PATH"
@@ -82,5 +86,9 @@ inputs:
       title: "IPA path"
       description: |
         If you use this step in the same build where you generated the IPA
+        You have to set this key if you launch this step directly in the build where you generate your APK/IPA, in that case, be careful to launch it necessarily after these build steps
+            - `Android Build` for android
+            - `Xcode Archive` for iOS
+        Otherwis, you can launch this step in another Bitrise build, in that case, you don't need to setup this key but `outside_build_slug` to download your APK/IPA to do quality checks
       is_expand: true
       is_required: true
