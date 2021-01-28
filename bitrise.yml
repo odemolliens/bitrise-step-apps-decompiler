@@ -4,7 +4,7 @@ default_step_lib_source: https://github.com/imranMnts/bitrise-steplib.git
 app:
   envs:
   - BITRISE_STEP_ID: apps-decompiler
-  - BITRISE_STEP_VERSION: 1.0.1
+  - BITRISE_STEP_VERSION: 1.0.2
   - BITRISE_STEP_GIT_CLONE_URL: https://github.com/odemolliens/bitrise-step-apps-decompiler.git
   - MY_STEPLIB_REPO_FORK_GIT_URL: https://github.com/imranMnts/bitrise-steplib
   # test datas
