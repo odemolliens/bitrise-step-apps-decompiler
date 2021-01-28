@@ -23,7 +23,10 @@ if [[ ${decompile_android} == "yes" ]]; then
         fi
 
         ANDROID_DATA_SLUG=$(echo $ANDROID_DATA_FROM_ARTIFACTS | jq '.slug' | sed 's/"//g')
-        ANDROID_APK_URL=$(curl -X GET "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${outside_build_slug}/artifacts/${ANDROID_DATA_SLUG}" -H "accept: application/json" -H "Authorization: ${BITRISE_TOKEN}" | jq '.data.expiring_download_url' | sed 's/"//g')
+        # put it in an array to get only the first item in case where you have multiple APK in artifacts
+        ANDROID_DATA_SLUG=(${ANDROID_DATA_SLUG[@]})
+        ANDROID_APK_ARTIFACT=$(curl -X GET "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${outside_build_slug}/artifacts/${ANDROID_DATA_SLUG[0]}" -H "accept: application/json" -H "Authorization: ${BITRISE_TOKEN}")
+        ANDROID_APK_URL=$(echo $ANDROID_APK_ARTIFACT | jq '.data.expiring_download_url' | sed 's/"//g')
 
         # download android apk
         curl -X GET ${ANDROID_APK_URL} -o android.apk
@@ -38,7 +41,7 @@ if [[ ${decompile_android} == "yes" ]]; then
     fi
 
     if [ ! -f "android.apk" ]; then
-        echo "ERROR: Cannot find any ipa"
+        echo "ERROR: Cannot find any APK"
         exit 1
     fi
 
@@ -59,7 +62,10 @@ if [[ ${decompile_ios} == "yes" ]]; then
         fi
 
         IOS_DATA_SLUG=$(echo $IOS_DATA_FROM_ARTIFACTS | jq '.slug' | sed 's/"//g')
-        IOS_IPA_URL=$(curl -X GET "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${outside_build_slug}/artifacts/${IOS_DATA_SLUG}" -H "accept: application/json" -H "Authorization: ${BITRISE_TOKEN}" | jq '.data.expiring_download_url' | sed 's/"//g')
+        # put it in an array to get only the first item in case where you have multiple IPA in artifacts
+        IOS_DATA_SLUG=(${ANDROID_DATA_SLUG[@]})
+        IOS_IPA_ARTIFACT=$(curl -X GET "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${outside_build_slug}/artifacts/${IOS_DATA_SLUG[0]}" -H "accept: application/json" -H "Authorization: ${BITRISE_TOKEN}")
+        IOS_IPA_URL=$(echo $IOS_IPA_ARTIFACT | jq '.data.expiring_download_url' | sed 's/"//g')
 
         # dl ios ipa
         curl -X GET ${IOS_IPA_URL} -o ios.ipa
