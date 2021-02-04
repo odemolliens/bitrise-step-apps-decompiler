@@ -63,7 +63,7 @@ if [[ ${decompile_ios} == "yes" ]]; then
 
         IOS_DATA_SLUG=$(echo $IOS_DATA_FROM_ARTIFACTS | jq '.slug' | sed 's/"//g')
         # put it in an array to get only the first item in case where you have multiple IPA in artifacts
-        IOS_DATA_SLUG=(${ANDROID_DATA_SLUG[@]})
+        IOS_DATA_SLUG=(${IOS_DATA_SLUG[@]})
         IOS_IPA_ARTIFACT=$(curl -X GET "https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${outside_build_slug}/artifacts/${IOS_DATA_SLUG[0]}" -H "accept: application/json" -H "Authorization: ${BITRISE_TOKEN}")
         IOS_IPA_URL=$(echo $IOS_IPA_ARTIFACT | jq '.data.expiring_download_url' | sed 's/"//g')
 
